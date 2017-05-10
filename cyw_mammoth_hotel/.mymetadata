@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="cyw_mammoth_hotel"
+  id="myeclipse.1469065171331"
+  context-root="/cyw_mammoth_hotel"
+  j2ee-spec="6.0"
+  archive="cyw_mammoth_hotel.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="AddMapper" >
+  <resultMap id="BaseResultMap" type="com.cyw.mammoth.model.Add" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="tname" property="tname" jdbcType="VARCHAR" />
+    <result column="tpwd" property="tpwd" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 自定义列集合 -->
+  <sql id="Base_Column_List" >
+    id, tname, tpwd
+  </sql>
+  
+  <!-- 根据ID查询方法 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tadd
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 根据ID删除方法 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tadd
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <!-- 插入方法 -->
+  <insert id="insert" parameterType="com.cyw.mammoth.model.Add" >
+    insert into tadd (id, tname, tpwd
+      )
+    values (#{id,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, #{tpwd,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <!-- 带有校验插入方法 -->
+  <insert id="insertSelective" parameterType="com.cyw.mammoth.model.Add" >
+    insert into tadd
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tname != null" >
+        tname,
+      </if>
+      <if test="tpwd != null" >
+        tpwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null" >
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="tpwd != null" >
+        #{tpwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 带有校验修改方法 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.cyw.mammoth.model.Add" >
+    update tadd
+    <set >
+      <if test="tname != null" >
+        tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="tpwd != null" >
+        tpwd = #{tpwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 修改方法 -->
+  <update id="updateByPrimaryKey" parameterType="com.cyw.mammoth.model.Add" >
+    update tadd
+    set tname = #{tname,jdbcType=VARCHAR},
+      tpwd = #{tpwd,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 查询方法 -->
+  <select id="getAll" resultMap="BaseResultMap">
+  	SELECT * FROM tadd
+  </select>
+</mapper>
