@@ -1,0 +1,55 @@
+<div class="gb-progress">
+    <dl>
+        <dd class="selected">
+            <h4>提交</h4>
+        </dd>
+        <dd class="selected">
+            <h4>处理</h4>
+        </dd>
+        <dd>
+            <h4>完成</h4>
+        </dd>
+    </dl>
+</div>
+
+/*流程进度条*/
+.gb-progress {
+    padding: 40px 0; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; margin-top: 20px; 
+    overflow: hidden; 
+}
+.gb-progress dl {
+    position: relative; padding-top: 25px; 
+}
+.gb-progress dl::before {
+    content: ""; z-index: 9; position: absolute; top: 0; left: 17%; width: 0; height: 5px; background: #28c8fc;
+}
+.gb-progress dl::after {
+    content: ""; position: absolute; top: 0; left: 17%; width: 66.66%; height: 5px; background: #c8c8c8;
+}
+.gb-progress dl.len1::before {
+    width: 33.33%;
+}
+.gb-progress dl.len2::before {
+    width: 66.66%;
+}
+.gb-progress dd {
+    position: relative; float: left; width: 33.33%; text-align: center;
+}
+.gb-progress dd::after {
+    content: ""; z-index: 9; position: absolute; left: 50%; top: -35px; width: 25px; height: 25px; border-radius: 100%; background: #c8c8c8; -webkit-transform: translate(-50%,0); -moz-transform: translate(-50%,0); transform: translate(-50%,0);
+}
+.gb-progress dd.selected::after {
+    background: #28c8fc;
+}
+.gb-progress dd * {
+    font-size: 24px; color: #8d8d8d; line-height: 2;
+}
+.gb-progress dd.selected h4 {
+    color: #28C8FC;
+}
+
+$(function(){
+2     var pl = $('.gb-progress dl');
+3     var index = pl.find('.selected').last().index();
+4     pl.addClass('len'+index);
+5 });
